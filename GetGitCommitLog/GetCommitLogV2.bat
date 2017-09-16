@@ -1,5 +1,4 @@
 @echo off
-
 REM Purpose: This script retrieves the Git commit history for a repository.
 REM Prerequisites: All repositories are contained under the "mainRepo" directory. The commit log for each repository will be saved in a text file under the "commitLog" directory 
 REM Usage: Change the values of "mainRepo" and "commitLog" prior to running this script
@@ -35,12 +34,13 @@ for /D %%i in (%mainRepo%\*) do (
 		REM		%cI -> committer date, strict ISO 8601 format;
 		REM		%s 	-> subject;
 		REM		%b 	-> body;
-		git log --pretty="%%H;%%aI;%%aE;%%cE;%%cI;%%s;%%b" --decorate=full > !logFilePath!
+		git log --full-history --pretty="%%H;%%aI;%%aE;%%cE;%%cI;%%s;%%b" --decorate=full > !logFilePath!
 		
 		REM remove blank lines from the file
 		for /f "usebackq tokens=* delims=" %%a in (!logFilePath!) do (
 			echo(%%a)>>~.txt
 			move /y  ~.txt !logFilePath!
+		
 		) ELSE (
 		REM Not a valid git repo. Do nothing
 	)
