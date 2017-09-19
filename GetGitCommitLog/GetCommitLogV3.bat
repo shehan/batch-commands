@@ -12,7 +12,7 @@ REM This is the location where the log files will be created in
 set commitLog=C:\Projects\batch-commands\GetGitCommitLog\commitLog.txt
 
 REM Create output file and write column names
-set columnNames=CommitHash;AbbreviatedCommitHash;AuthorDate;AuthorEmail;CommitterEmail;CommitterDate;Subject;Body
+set columnNames=App;CommitHash;AbbreviatedCommitHash;AuthorDate;AuthorEmail;CommitterEmail;CommitterDate;Subject;Body
 echo %columnNames%>%commitLog%
 
 REM Iterate through all app folder
